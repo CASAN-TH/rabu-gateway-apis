@@ -24,6 +24,7 @@ services:
       - "80:80"
     depends_on:
       - auth
+      - products
     deploy:
       replicas: 1
 
