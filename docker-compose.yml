@@ -18,6 +18,17 @@ services:
     deploy:
       replicas: 1
 
+  products:
+    image: cyberadvance/rabu-products-api
+    ports: 
+      - "3002:3000"
+    depends_on:
+      - db
+    environment:
+      - MONGO_DB_URI=mongodb://db/products
+    deploy:
+      replicas: 1
+
   web:
     image: cyberadvance/rabu-gateway-apis
     ports: 
@@ -25,17 +36,5 @@ services:
     depends_on:
       - auth
       - products
-    deploy:
-      replicas: 1
-
-  products:
-    image: cyberadvance/rabu-products-api
-    ports: 
-      - "3002:3000"
-    depends_on:
-      - db
-      - auth
-    environment:
-      - MONGO_DB_URI=mongodb://db/donates
     deploy:
       replicas: 1
